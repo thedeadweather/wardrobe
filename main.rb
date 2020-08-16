@@ -17,3 +17,29 @@ else
   # вывод подборки вещей
   recommendation.each { |item| puts item }
 end
+
+puts
+puts "Не нашли подходящих вещей в гардеробе?"
+puts "Хотите добавить новую вещь? (Y/N)"
+answer = STDIN.gets.chomp.capitalize
+until answer == "Y" || answer == "N"
+  puts "Y - да, N - нет"
+  answer = STDIN.gets.chomp.capitalize
+end
+
+case answer
+when "N"
+  puts "Хорошего дня"
+when "Y"
+  puts "Введите наименование"
+  name = STDIN.gets.chomp.capitalize
+  puts "Введите категорию"
+  category = STDIN.gets.chomp.capitalize
+  puts "Введите диапазон температуры в формате:  \'(мин, макс)\'"
+  temperature = STDIN.gets.chomp
+  # записать файл с вещью
+  wardrobe.add_new_item(name, category, temperature, __dir__)
+  puts
+  puts "вещь добавлена!"
+  puts "Запустите программу снова для подбора одежды"
+end

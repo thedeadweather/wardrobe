@@ -23,8 +23,17 @@ class Wardrobe
 
   # подобрать коллекцию вещей
   def create_outfit(temperature)
-    appropriated(temperature)
+    appropriated!(temperature)
     item_types.map { |i| same_type_items(i).sample }
+  end
+
+  # добавить новую одежду в гардероб
+  def add_new_item(name, category, temperature, path)
+    File.open("#{path}/data/added_item_#{Time.now.strftime("%j-%Y_%H:%M:%S")}.txt", 'w:UTF-8') do |file|
+      file.puts("#{name}")
+      file.puts("#{category}")
+      file.puts("#{temperature}")
+    end
   end
 
   private
@@ -40,7 +49,7 @@ class Wardrobe
   end
 
   # одежда, подходящая по погоде
-  def appropriated(temperature)
+  def appropriated!(temperature)
     @all_clothes.select! { |i| i.match_weather?(temperature) }
   end
 end
