@@ -1,14 +1,14 @@
-require 'clothes_item.rb'
+require 'clothes_item'
 
 describe ClothesItem do
   let(:item) { ClothesItem.new('кепка','головной убор', min: 3, max: 25) }
 
   describe '::new' do
     it 'initialize instance variables' do
-      item.name.should eq 'кепка'
-      item.category.should eq 'головной убор'
-      item.min_temp.should eq 3
-      item.max_temp.should eq 25
+      expect(item.name).to eq 'кепка'
+      expect(item.category).to eq 'головной убор'
+      expect(item.min_temp).to eq 3
+      expect(item.max_temp).to eq 25
     end
   end
 

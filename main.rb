@@ -35,10 +35,15 @@ when "Y"
   name = STDIN.gets.chomp.capitalize
   puts "Введите категорию"
   category = STDIN.gets.chomp.capitalize
-  puts "Введите диапазон температуры в формате:  \'(мин, макс)\'"
-  temperature = STDIN.gets.chomp
+  puts "Введите минимально допустимую температуру"
+  min_temp = STDIN.gets.chomp
+  puts "Введите максимально допустимую температуру"
+  max_temp = STDIN.gets.chomp
+
+  #создаем новую вещь
+  new_item = ClothesItem.new(name, category, min: min_temp, max: max_temp)
   # записать файл с вещью
-  wardrobe.add_new_item(name, category, temperature, __dir__)
+  Wardrobe.add_new_item(new_item, __dir__)
   puts
   puts "вещь добавлена!"
   puts "Запустите программу снова для подбора одежды"
